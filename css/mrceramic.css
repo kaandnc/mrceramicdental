@@ -1,0 +1,899 @@
+/* 1. GENEL AYARLAR */
+:root {
+    --main-blue: #1a4d75; /* Senin belirlediğin özel mavi */
+    --hover-bg: rgba(255, 255, 255, 0.15);
+    --white: #ffffff;
+}
+
+body {
+    padding-top: 80px; /* Navbar sabit olduğu için içerik yukarı kaçmasın diye */
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+/* EKLEME: Bootstrap'in standart mavisini senin mavine çeviriyoruz */
+.text-primary {
+    color: var(--main-blue) !important;
+}
+
+/* 2. NAVBAR */
+.custom-navbar {
+    background-color: var(--main-blue) !important;
+    padding: 18px 0;
+    transition: 0.4s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    
+    /* EKLEME: Navbar her zaman en üst katmanda kalsın */
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+}
+
+.navbar-shrink {
+    padding: 10px 0;
+}
+
+.brand-text {
+    font-weight: 700;
+    color: white !important;
+    font-size: 1.25rem;
+}
+
+.custom-btn {
+    color: white !important;
+    margin-left: 10px;
+    padding: 10px 18px !important;
+    transition: 0.3s;
+}
+
+.custom-btn:hover,
+.custom-btn.active {
+    background-color: var(--hover-bg);
+    border-radius: 6px;
+}
+
+.main-hero {
+    /* Mavi rengi tamamen kaldırdık, sadece resim */
+    background-color: transparent; 
+
+    /* DİKKAT: Buraya resminin tam adını ve uzantısını yaz */
+    background-image: url('url(../gorsel4.png)'); 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 450px;
+    display: flex;
+    align-items: center;
+}
+
+/* Resim üzerinde yazı okunması için yazıya gölge verelim */
+.main-hero h1, .main-hero p {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+}
+
+.main-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+/* 4. HERO AREA (Alt Bölüm) */
+.hero-area {
+    background-color: var(--white);
+    padding: 80px 0;
+}
+
+.hero-area h1 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.hero-area p.lead {
+    border-left: 5px solid var(--main-blue);
+    padding-left: 20px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.hero-image-stack img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* 5. ÜRÜNLER ALANI */
+.products-hero {
+    background-color: var(--main-blue);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+}
+
+/* 6. ÜRÜN KARTLARI */
+.product-item {
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease; /* Hover efekti için hazırlık */
+}
+
+/* Kartın üzerine gelince hafif yukarı çıksın */
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-badge {
+    background-color: var(--main-blue);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.product-features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.product-features li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.product-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--main-blue);
+    font-weight: 900;
+}
+
+/* 7. GİZLİ CHECKBOX MANTIĞI */
+#close-form-check:checked ~ .quick-form-container {
+    display: none;
+}
+
+/* RESPONSIVE AYARLAR */
+@media (max-width: 991px) {
+    .main-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-area {
+        text-align: center;
+    }
+
+    .hero-area p.lead {
+        border-left: none;
+        padding-left: 0; /* Mobilde çizgi kötü durabilir, kaldırıldı */
+        padding-top: 15px;
+    }
+}
+/* Slider altındaki kapsayıcı alan */
+.hizmetler-container {
+    display: flex;
+    justify-content: center; /* Kutuları ortalar */
+    gap: 30px;               /* Kutular arası boşluk */
+    flex-wrap: wrap;         /* Mobilde alt alta indirir */
+    padding: 40px 20px;      /* Üstten-alttan boşluk bırakır */
+    max-width: 1200px;       /* Çok geniş ekranlarda dağılmasın */
+    margin: 0 auto;          /* Sayfada ortalar */
+}
+
+/* Kutu Yapısı */
+.hizmet-kutusu {
+    position: relative;
+    width: 350px;            /* Genişlik */
+    height: 250px;           /* Yükseklik */
+    border-radius: 12px;
+    overflow: hidden;        /* Resim taşarsa gizle */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+/* Resim Ayarları */
+.hizmet-kutusu img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Siyah Arka Plan ve Yazı Katmanı */
+.hizmet-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Siyah transparan */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;              /* Gizli başla */
+    transition: opacity 0.3s ease;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Hover (Mouse ile gelince) Efektleri */
+.hizmet-kutusu:hover .hizmet-overlay {
+    opacity: 1; /* Yazıyı göster */
+}
+
+.hizmet-kutusu:hover img {
+    transform: scale(1.1); /* Resmi büyüt */
+}
+
+/* Yazı Stilleri */
+.hizmet-overlay h3 {
+    margin: 0 0 10px 0;
+    color: #ffcc00; /* Başlık rengi */
+    font-size: 20px;
+}
+
+.hizmet-overlay p {
+    margin: 0;
+    font-size: 14px;
+}
+/* --- İstatistik Sayacı Tasarımı --- */
+
+.istatistik-bolumu {
+    display: flex;              /* Yan yana dizilim */
+    justify-content: space-around; /* Aralarına eşit boşluk bırak */
+    align-items: center;        /* Dikeyde ortala */
+    flex-wrap: wrap;            /* Mobilde alt alta geçsin */
+    background-color: #1a4d75;     /* Koyu gri arka plan (Profesyonel durur) */
+    color: #fff;                /* Yazı rengi beyaz */
+    padding: 60px 20px;         /* İç boşluk (Yükseklik verir) */
+    margin-top: 50px;           /* Üstteki kutularla arasına boşluk koyar */
+    text-align: center;
+}
+
+.sayac-kutu {
+    flex: 1;                    /* Kutuların eşit genişlikte olmasını sağlar */
+    min-width: 200px;           /* Çok küçülürse alt satıra geçsin */
+    margin: 20px 0;             /* Mobilde birbirine yapışmasın */
+}
+
+/* Sayıların Stili */
+.sayi {
+    display: block;             /* Alt satıra geçmesini sağlar */
+    font-size: 48px;            /* Sayı boyutu (Büyük ve okunaklı) */
+    font-weight: bold;          /* Kalın yazı */
+    color: #f9f9f9;             /* Altın sarısı renk (Diğer tasarımla uyumlu) */
+    margin-bottom: 10px;        /* Yazıyla arasındaki boşluk */
+}
+
+/* Altındaki Yazının Stili */
+.etiket {
+    font-size: 18px;            /* Yazı boyutu */
+    font-weight: 500;
+    opacity: 0.9;               /* Hafif şeffaflık (Modern görünüm) */
+    text-transform: uppercase;  /* Hepsi büyük harf olsun */
+    letter-spacing: 1px;        /* Harf aralığını biraz aç */
+}
+
+/* Mobil Uyumluluk İçin Ekstra Ayar */
+@media (max-width: 768px) {
+    .istatistik-bolumu {
+        flex-direction: column; /* Telefondan girilince alt alta diz */
+    }
+    .sayac-kutu {
+        margin-bottom: 40px;    /* Telefondan bakınca araları açılsın */
+    }
+}
+/* --- SIFIR JS İÇİN GEREKLİ AYARLAR --- */
+
+/* Checkbox'ı sayfada gizliyoruz, görünmesine gerek yok */
+#kapat-kontrol {
+    display: none;
+}
+
+/* Mantık: Checkbox işaretlendiğinde (checked), hemen sonrasındaki (+) form gizlensin */
+#kapat-kontrol:checked + .hekim-sticky-form {
+    display: none;
+}
+
+/* --- FORM TASARIMI --- */
+
+.hekim-sticky-form {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    z-index: 9999;
+    font-family: sans-serif;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+    /* Animasyonlu giriş */
+    animation: slideInUp 0.6s ease-out;
+}
+
+.form-header {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.baslik-text i {
+    margin-right: 8px;
+}
+
+/* --- GARANTİ ÇALIŞAN KAPATMA SİSTEMİ --- */
+
+/* 1. Checkbox'ı gizle */
+#kapat-kontrol {
+    position: absolute; /* Sayfa düzenini bozmasın */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 2. Checkbox işaretlendiğinde formu YOK ET */
+/* Not: ~ işareti kullandık, bu sayede daha esnek çalışır */
+#kapat-kontrol:checked ~ .hekim-sticky-form {
+    display: none !important;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.form-body {
+    padding: 15px;
+    background-color: #f8f9fa;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box; 
+    outline: none;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.2);
+}
+
+.hizli-gonder-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.hizli-gonder-btn:hover {
+    background-color: #5b5d5b;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hekim-sticky-form {
+        width: 90%;
+        right: 5%;
+        bottom: 15px;
+    }
+}
+/* --- MODERN FOOTER TASARIMI --- */
+
+.modern-footer {
+    position: relative;
+    background: linear-gradient(135deg, #0b1c2c 0%, #1a2a3a 100%); /* Koyu Lacivert Degrade */
+    color: #fff;
+    padding-top: 100px; /* Dalga efekti için üstten boşluk */
+    padding-bottom: 40px;
+    margin-top: 80px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* SVG Dalga Efekti */
+.footer-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px; /* Dalga yüksekliği */
+}
+
+.footer-wave .shape-fill {
+    fill: #ffffff; /* Sayfa arkaplan rengiyle aynı olmalı (beyaz) */
+}
+
+/* Başlık Altındaki Çizgi Efekti */
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 3px;
+    background-color: #0d6efd; /* Bootstrap Primary Blue */
+    border-radius: 2px;
+}
+
+/* Linkler ve Hover Efekti */
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #aab2bd; /* Açık gri */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-links a i {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    padding-left: 10px; /* Sağa kayma hareketi */
+}
+
+.footer-links a:hover i {
+    opacity: 1;
+    color: #0d6efd; /* İkon mavi olur */
+}
+
+/* Sosyal Medya Butonları */
+.social-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 50%; /* Yuvarlak */
+    margin-right: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-btn:hover {
+    background: #0d6efd;
+    color: #fff;
+    transform: translateY(-5px); /* Yukarı zıplama */
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+    border-color: transparent;
+}
+
+/* İletişim Kartı (Beyaz Kutu) */
+.contact-card {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    /* Mobilde daha güzel dursun */
+    border-left: 5px solid #0d6efd; 
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 768px) {
+    .modern-footer {
+        text-align: center;
+    }
+    
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%); /* Çizgiyi ortala */
+    }
+
+    .footer-links a:hover {
+        padding-left: 0; /* Mobilde kayma olmasın, garip durabilir */
+        color: #0d6efd;
+    }
+    
+    .contact-card {
+        text-align: left; /* İletişim kartı sola yaslı kalsın okunabilirlik için */
+        margin-top: 20px;
+    }
+}
+/* --- TEKNOLOJİLER SAYFASI TASARIMI --- */
+
+/* Üst Başlık (Header) Alanı */
+.page-header {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+/* Resmin üzerine siyah perde çekiyoruz ki yazı okunsun */
+.page-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* %60 karartma */
+    z-index: 1;
+}
+
+/* Harf Aralığı (Letter Spacing) Sınıfı */
+.ls-2 {
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+/* Teknoloji Resim Alanı */
+.tech-image-wrapper {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    background: #fff;
+    transition: transform 0.4s ease;
+}
+
+.tech-image-wrapper:hover {
+    transform: translateY(-10px); /* Resim yukarı kalkar */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.tech-image-wrapper img {
+    border-radius: 15px;
+    width: 100%;
+}
+
+/* Resim üzerindeki etiket (Badge) */
+.tech-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -10px;
+    background: #0d6efd;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Alt kısımdaki 3'lü Mini Kartlar */
+.mini-tech-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.mini-tech-card:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Alt kısımdaki 3'lü Mini Kartlar (Resimli Yeni Hali) */
+.mini-tech-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 15px; /* Kartın köşeleri yuvarlak */
+    transition: all 0.3s ease;
+    overflow: hidden; /* Resim köşelerden taşmasın diye önemli */
+}
+
+.mini-tech-card:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transform: translateY(-5px); /* Hafif yukarı kalkma efekti */
+}
+
+/* Kartın üstündeki resim alanı */
+.card-img-top-wrapper {
+    height: 200px; /* Resimler hep aynı yükseklikte olsun */
+    overflow: hidden;
+}
+
+.card-img-top-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resim kutuya sığsın diye kırpılır, bozulmaz */
+    transition: transform 0.5s ease;
+}
+
+/* Karta mouse ile gelince resim hafif yakınlaşsın */
+.mini-tech-card:hover .card-img-top-wrapper img {
+    transform: scale(1.05);
+}
+/* Kartın üstündeki resim çerçevesi */
+.card-img-top-wrapper {
+    width: 100%;
+    height: 250px; /* TÜM RESİMLERİ BU YÜKSEKLİĞE ZORLAR */
+    overflow: hidden; /* Taşanı gizle */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Resmin kendisi */
+.card-img-top-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* SİHİRLİ KOD: Resmi sündürmeden kutuyu doldurur */
+    object-position: center; /* Resmi ortalar */
+    transition: transform 0.5s ease;
+}
+
+/* Mouse ile üzerine gelince hafif yakınlaşma efekti */
+.mini-tech-card:hover .card-img-top-wrapper img {
+    transform: scale(1.1);
+}
+/* --- HAKKIMIZDA SAYFASI ÖZEL TASARIM --- */
+
+/* Hakkımızda Yazı Tipi */
+.about-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* Resim Yığını (Image Stack) Efekti */
+.about-image-stack {
+    position: relative;
+    padding: 20px;
+}
+
+.about-image-stack .main-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border: 5px solid #fff; /* Beyaz çerçeve */
+}
+
+.about-image-stack .sub-img {
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    z-index: 2;
+    width: 50%; /* Küçük resmin boyutu */
+    border: 5px solid #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Misyon & Vizyon Kartları */
+.mv-card {
+    transition: all 0.4s ease;
+    border-left: 5px solid transparent; /* Varsayılan kenar */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Kartın üzerine gelince (Hover) */
+.mv-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    border-left-color: #0d6efd; /* Sol kenar mavi olur */
+}
+
+/* İkon Kutusu */
+.mv-card .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: #f0f7ff; /* Çok açık mavi */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.mv-card:hover .icon-wrapper {
+    background: #0d6efd; /* İkon kutusu maviye döner */
+    color: #fff !important; /* İkon beyaz olur */
+}
+
+/* Değerlerimiz (İkonlu Alan) */
+.value-item {
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.value-item:hover {
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+/* --- İLETİŞİM SAYFASI TASARIMI --- */
+
+/* İletişim Bilgi Kutuları (Sağ Taraf) */
+.contact-box {
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-5px); /* Kart yukarı kalkar */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    border-left-color: #0d6efd; /* Sol tarafta mavi çizgi belirir */
+}
+
+/* İkonların olduğu yuvarlak alan */
+.contact-box .icon-box {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.contact-box:hover .icon-box {
+    background-color: #0d6efd !important; /* Mavi olur */
+    color: #fff !important; /* İkon beyaz olur */
+}
+
+/* Form Alanı */
+.contact-form-wrapper {
+    border-top: 5px solid #0d6efd; /* Üstte şık bir mavi çizgi */
+}
+
+/* Form içindeki inputlar (Bootstrap Floating Label özelleştirme) */
+.form-floating > .form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.form-floating > label {
+    color: #999;
+}
+
+/* Harita Bölümü */
+.map-section iframe {
+    filter: grayscale(0%); /* Harita renkli kalsın, istersen %100 yapıp gri yapabilirsin */
+    display: block; /* Alt boşluğu engellemek için */
+}
+/* --- MOBİL İÇİN ÖZEL SIKIŞTIRMA AYARLARI --- */
+@media (max-width: 768px) {
+    
+    /* 1. Formun genel dış boşluğunu azaltalım */
+    .form-body {
+        padding: 10px;       /* 15px'den 10px'e düşürdük */
+        margin-top: 0;       /* Üstten ekstra boşluk varsa sıfırla */
+    }
+
+    /* 2. Her bir kutu arasındaki mesafeyi kısalım */
+    .form-group {
+        margin-bottom: 8px;  /* 15px'den 8px'e düşürdük (Kutular birbirine yaklaşır) */
+    }
+
+    /* 3. Inputların ve butonun içindeki "şişkinliği" alalım */
+    .form-body input[type="text"],
+    .form-body input[type="tel"],
+    .form-body textarea,
+    .hizli-gonder-btn {
+        padding: 8px;        /* 12px'den 8px'e düşürdük (Daha ince inputlar) */
+        font-size: 14px;     /* Yazı boyutunu biraz küçülttük */
+        height: auto;        /* Sabit yükseklik varsa iptal et */
+    }
+
+    /* 4. Mesaj kutusunu (textarea) özellikle kısaltalım */
+    .form-body textarea {
+        height: 50px;        /* Mesaj kutusunu daha kısa yap */
+        resize: none;        /* Kullanıcının boyutla oynamasını engelle (isteğe bağlı) */
+    }
+}
+/* --- MOBİL İÇİN DÜZELTİLMİŞ KÜÇÜK FORM AYARI --- */
+@media (max-width: 768px) {
+    
+    .hekim-sticky-form {
+        /* Genişliği sabitledik, ekrana yayılmayacak */
+        width: 260px !important; 
+        
+        /* Sağ alt köşeye yapıştır */
+        right: 10px !important;
+        bottom: 10px !important;
+        left: auto !important; /* Soldan hizalamayı iptal et */
+        
+        /* Çerçeve ve gölgeyi biraz hafiflet */
+        border-radius: 8px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+
+    /* Başlığı küçült */
+    .form-header {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+    }
+
+    /* İçerik boşluklarını daralt */
+    .form-body {
+        padding: 8px !important;
+    }
+
+    /* Inputları (kutucukları) incelt */
+    .form-group input, 
+    .form-group textarea {
+        padding: 6px !important;
+        font-size: 12px !important;
+        height: auto !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Kutular arası boşluğu neredeyse sıfırla */
+    .form-group {
+        margin-bottom: 6px !important;
+    }
+
+    /* Mesaj kutusunu iyice kısalt */
+    .form-body textarea {
+        height: 40px !important;
+    }
+
+    /* Gönder butonunu küçült */
+    .hizli-gonder-btn {
+        padding: 6px !important;
+        font-size: 13px !important;
+    }
+}
