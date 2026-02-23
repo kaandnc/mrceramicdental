@@ -19,8 +19,8 @@ if (isset($_POST['giris_yap'])) {
     // --- GÜVENLİK AYARI ---
     // Buraya tahmin edilmesi zor bilgiler yazdım. 
     // İstersen bunları kullan, istersen tırnak içindekileri değiştir.
-    $yonetici_adi   = "mrceramic_yonetici"; 
-    $yonetici_sifre = "Efe.Mesut_2026!Tr"; 
+    $yonetici_adi   = "...."; 
+    $yonetici_sifre = "...."; 
 
     if ($kullanici_adi == $yonetici_adi && $sifre == $yonetici_sifre) {
         
